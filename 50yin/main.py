@@ -5,12 +5,10 @@ from screen import *
 
 # 初始化Pygame
 pygame.init()
-
 screen_main()
 pygame.display.flip()
-while 1:
-    screen.fill((223,234,236))
 
+while 1:
     # 绘制主场景
 
     # 更新屏幕

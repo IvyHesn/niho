@@ -6,6 +6,8 @@ import os
 # 设置显示窗口
 width, height = 640, 960
 screen = pygame.display.set_mode((width, height))
+screen.fill((223, 234, 236))
+pygame.display.set_caption('web_ids')
 
 # 导入图片
 btn_1 = pygame.image.load('res/ui/btn_1.png')
