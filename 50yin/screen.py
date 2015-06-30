@@ -26,6 +26,7 @@ def screen_main():
 
 
 def screen_game():
+    '''游戏类'''
     screen.blit(btn_2, [228, 100])
     screen.blit(btn_3, [228, 300])
     screen.blit(btn_1, [228, 500])

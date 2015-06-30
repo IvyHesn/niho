@@ -6,11 +6,13 @@ from screen import *
 # 初始化Pygame
 pygame.init()
 
+screen_main()
+pygame.display.flip()
 while 1:
-    # 绘图前，把屏幕填充为黑色
-    screen.fill(0)
+    screen.fill((223,234,236))
+
     # 绘制主场景
-    screen_main()
+
     # 更新屏幕
     pygame.display.flip()
     # 监听事件
@@ -23,4 +25,4 @@ while 1:
             if btn_1_rect.collidepoint(posX, posY):
                 screen_game()
             else:
-                print ('n')
+                print('n')
