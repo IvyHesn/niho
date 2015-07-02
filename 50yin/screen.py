@@ -32,3 +32,11 @@ def screen_game():
     screen.blit(btn_2, [228, 100])
     screen.blit(btn_3, [228, 300])
     screen.blit(btn_1, [228, 500])
+
+
+def draw_screen(screen):
+    '''绘制场景'''
+    if screen == 'main':
+        screen_main()
+    if screen == 'game':
+        screen_game()

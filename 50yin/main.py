@@ -5,12 +5,11 @@ from screen import *
 
 # 初始化Pygame
 pygame.init()
-screen_main()
-pygame.display.flip()
+screen = 'main'
 
 while 1:
     # 绘制主场景
-
+    draw_screen(screen)
     # 更新屏幕
     pygame.display.flip()
     # 监听事件
@@ -21,6 +20,7 @@ while 1:
         if event.type == pygame.MOUSEBUTTONDOWN:
             posX, posY = pygame.mouse.get_pos()
             if btn_1_rect.collidepoint(posX, posY):
-                screen_game()
+                screen = 'game'
             else:
+                screen = 'main'
                 print('n')

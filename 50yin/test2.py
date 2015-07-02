@@ -4,7 +4,6 @@ sprite_image_filename = 'res/ui/btn_1.png'
 import pygame
 from pygame.locals import *
 from sys import exit
-from gameobjects.vector2 import Vector2
 from math import *
 
 pygame.init()
@@ -19,10 +18,6 @@ clock = pygame.time.Clock()
 pygame.mouse.set_visible(False)
 pygame.event.set_grab(True)
 
-sprite_pos = Vector2(200, 150)
-sprite_speed = 300.
-sprite_rotation = 0.
-sprite_rotation_speed = 360.
 
 while True:
 
