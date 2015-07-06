@@ -8,13 +8,14 @@ width, height = 900, 900
 screen = pygame.display.set_mode((width, height))
 game_icon = pygame.image.load('res/game_icon.png')
 pygame.display.set_icon(game_icon)
-screen.fill((255, 255, 255))
+screen.fill((255, 255, 191))
 pygame.display.set_caption('五子棋-无禁手')
 
 # 导入图片
 board_base = pygame.image.load('res/board_base.png')
 board_base_1 = pygame.image.load('res/board_base_1.png')
 board_base_2 = pygame.image.load('res/board_base_2.png')
+highlight = pygame.image.load('res/highlight.png')
 chessman_black = pygame.image.load('res/chessman_black.png')
 chessman_white = pygame.image.load('res/chessman_white.png')
 chess_book = [[None for col in range(0, 15)]for row in range(0, 15)]
@@ -25,7 +26,7 @@ chess_book = [[None for col in range(0, 15)]for row in range(0, 15)]
 
 
 def draw_board_base():
-    '''棋盘底'''
+    '''绘制棋盘底'''
     for i in range(0, 15):
         for j in range(0, 15):
             if (i + j) % 2 == 0:
@@ -34,53 +35,8 @@ def draw_board_base():
                 screen.blit(board_base_2, [75 + i * 50, 75 + j * 50])
 
 
-def isCanPutdown(i, j):
-    '''判断是否可以落子'''
-    if 0 <= i < 15 and 0 <= j < 15:
-        if chess_book[i][j] == None:
-            return True
-        else:
-            print('不能在已有棋子的格子下棋！')
-            return False
-    else:
-        print('不能在棋盘外下棋！')
-        return False
-
-
-def isWin(chess_book, i, j, blackorwhite):
-    '''判断落子后是否获胜'''
-    row_win = [None] * 5
-    col_win = [None] * 5
-    oblique_win = [None] * 5
-    for c in range(0, 5):
-        if 0 <= i + c - 4 and i + c - 0 < 15:
-            for c2 in range(0, 5):
-                if chess_book[i + c - 4][j] == chess_book[i + c - 4 + c2][j] == blackorwhite:
-                    row_win[c] = 1
-        else:
-            row_win[c] = 0
-    for c in range(0, 5):
-        if 0 <= j + c - 4 and j + c - 0 < 15:
-            for c2 in range(0, 5):
-                if chess_book[i][j + c - 4] == chess_book[i][j + c - 4 + c2] == blackorwhite:
-                    col_win[c] = 1
-        else:
-            col_win[c] = 0
-    for c in range(0, 5):
-        if 0 <= i + c - 4 and 0 <= j + c - 4 and i + c - 0 < 15 and j + c - 0 < 15:
-            for c2 in range(0, 5):
-                if chess_book[i + c - 4][j + c - 4] == chess_book[i + c - 4 + c2][j + c - 4 + c2] == blackorwhite:
-                    oblique_win[c] = 1
-        else:
-            oblique_win[c] = 0
-    print(row_win, col_win, oblique_win)
-    if 1 in row_win + col_win + oblique_win:
-        return True
-    else:
-        return False
-
-
 def getij_fromposXY(posX, posY):
+    '''根据鼠标XY，得到落子点ij'''
     if 75 <= posX <= 900 - 75 and 75 <= posY <= 900 - 75:
         i = (posX - 75) // 50
         j = (posY - 75) // 50

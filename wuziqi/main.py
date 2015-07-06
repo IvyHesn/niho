@@ -2,7 +2,7 @@
 import pygame
 from pygame.locals import *
 from screen import *
-
+from wuziqi_logic import *
 # 初始化Pygame
 pygame.init()
 # 绘制棋盘底部
@@ -25,7 +25,10 @@ while 1:
             if isCanPutdown(i, j):
                 draw_chessman(blackorwhite, i, j)
                 if isWin(chess_book, i, j, blackorwhite):
-                    print(blackorwhite, '获胜')
+                    if blackorwhite == 0:
+                        print('黑棋获胜！')
+                    else:
+                        print ('白棋获胜！')
                 else:
                     blackorwhite = changehand(blackorwhite)
             else:
