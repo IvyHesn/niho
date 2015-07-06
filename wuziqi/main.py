@@ -8,9 +8,9 @@ pygame.init()
 # 绘制棋盘底部
 draw_board_base()
 # 默认黑棋先走 0黑 1白
-chessman = 0
-chess_book = [[0] * 9] * 9
-print (chess_book)
+blackorwhite = 0
+
+
 while 1:
      # 更新屏幕
     pygame.display.flip()
@@ -21,8 +21,12 @@ while 1:
             exit(0)
         if event.type == pygame.MOUSEBUTTONDOWN:
             posX, posY = pygame.mouse.get_pos()
-            if isCanPutdown(posX, posY):
-                draw_chessman(chessman, posX, posY)
-                chessman = changehand(chessman)
+            i, j = getij_fromposXY(posX, posY)
+            if isCanPutdown(i, j):
+                if isWin(chess_book, i, j, blackorwhite):
+                    print(blackorwhite ,'获胜')
+                else:
+                    draw_chessman(blackorwhite, i, j)
+                    blackorwhite = changehand(blackorwhite)
             else:
                 pass
