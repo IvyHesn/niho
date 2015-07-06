@@ -23,10 +23,10 @@ while 1:
             posX, posY = pygame.mouse.get_pos()
             i, j = getij_fromposXY(posX, posY)
             if isCanPutdown(i, j):
+                draw_chessman(blackorwhite, i, j)
                 if isWin(chess_book, i, j, blackorwhite):
-                    print(blackorwhite ,'获胜')
+                    print(blackorwhite, '获胜')
                 else:
-                    draw_chessman(blackorwhite, i, j)
                     blackorwhite = changehand(blackorwhite)
             else:
                 pass
