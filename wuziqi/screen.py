@@ -15,7 +15,7 @@ pygame.display.set_caption('五子棋-无禁手')
 board_base = pygame.image.load('res/board_base.png')
 board_base_1 = pygame.image.load('res/board_base_1.png')
 board_base_2 = pygame.image.load('res/board_base_2.png')
-highlight = pygame.image.load('res/highlight.png')
+highlight_circle = pygame.image.load('res/highlight_circle.png')
 chessman_black = pygame.image.load('res/chessman_black.png')
 chessman_white = pygame.image.load('res/chessman_white.png')
 chess_book = [[None for col in range(0, 15)]for row in range(0, 15)]
@@ -60,3 +60,9 @@ def changehand(blackorwhite):
     '''更换出手方'''
     blackorwhite = 1 - blackorwhite
     return blackorwhite
+
+
+def draw_hightlight_chess(highlight_chess_list):
+    for grid in highlight_chess_list:
+        screen.blit(
+            highlight_circle, [grid[0] * 50 + 75 + 4.5, grid[1] * 50 + 75 + 4.5])

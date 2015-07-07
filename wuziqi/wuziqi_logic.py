@@ -14,12 +14,12 @@ def isCanPutdown(i, j):
         return False
 
 
-def isWin(chess_book, i, j, blackorwhite):
-    '''判断落子后是否获胜，并返回应该高亮的格子'''
+def analy_chess(chess_book, i, j, blackorwhite):
+    '''解析盘面，返回致胜格子列表'''
     row_win = [None] * 5
     col_win = [None] * 5
     oblique_win = [None] * 5
-
+    highlight_chess_list = []
     for c in range(0, 5):
         row_win_cmp = [None] * 5
         if 0 <= i + c - 4 and i + c - 0 < 15:
@@ -28,6 +28,9 @@ def isWin(chess_book, i, j, blackorwhite):
                     row_win_cmp[c2] = 1
                     if row_win_cmp == [1, 1, 1, 1, 1]:
                         row_win[c] = 1
+                        add_highlight1 = [
+                            [i + c - 4, j], [i + c - 3, j], [i + c - 2, j], [i + c - 1, j], [i + c, j]]
+                        highlight_chess_list.extend(add_highlight1)
     for c in range(0, 5):
         col_win_cmp = [None] * 5
         if 0 <= j + c - 4 and j + c - 0 < 15:
@@ -36,6 +39,9 @@ def isWin(chess_book, i, j, blackorwhite):
                     col_win_cmp[c2] = 1
                     if col_win_cmp == [1, 1, 1, 1, 1]:
                         col_win[c] = 1
+                        add_highlight2 = [
+                            [i, j + c - 4], [i, j + c - 3], [i, j + c - 2], [i, j + c - 1], [i, j + c]]
+                        highlight_chess_list.extend(add_highlight2)
     for c in range(0, 5):
         oblique_win_cmp = [None] * 5
         if 0 <= i + c - 4 and 0 <= j + c - 4 and i + c - 0 < 15 and j + c - 0 < 15:
@@ -44,14 +50,19 @@ def isWin(chess_book, i, j, blackorwhite):
                     oblique_win_cmp[c2] = 1
                     if oblique_win_cmp == [1, 1, 1, 1, 1]:
                         oblique_win[c] = 1
+                        add_highlight3 = [
+                            [i + c - 4, j + c - 4], [i + c - 3, j + c - 3], [i + c - 2, j + c - 2], [i + c - 1, j + c - 1], [i + c, j + c]]
+                        highlight_chess_list.extend(add_highlight3)
     print(row_win, col_win, oblique_win)
+    print(highlight_chess_list)
+    return row_win, col_win, oblique_win, highlight_chess_list
 
+
+def isWin(row_win, col_win, oblique_win):
+    '''判断落子后是否获胜'''
     if 1 in row_win + col_win + oblique_win:
         return True
     else:
         return False
 
 
-def highlight_chess():
-    pass
-    return a

@@ -24,12 +24,14 @@ while 1:
             i, j = getij_fromposXY(posX, posY)
             if isCanPutdown(i, j):
                 draw_chessman(blackorwhite, i, j)
-                if isWin(chess_book, i, j, blackorwhite):
-                    highlight_chess()
+                row_win, col_win, oblique_win, highlight_chess_list = analy_chess(
+                    chess_book, i, j, blackorwhite)
+                if isWin(row_win, col_win, oblique_win):
+                    draw_hightlight_chess(highlight_chess_list)
                     if blackorwhite == 0:
                         print('黑棋获胜！')
                     else:
-                        print ('白棋获胜！')
+                        print('白棋获胜！')
                 else:
                     blackorwhite = changehand(blackorwhite)
             else:
