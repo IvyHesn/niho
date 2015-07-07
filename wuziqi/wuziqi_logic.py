@@ -53,8 +53,8 @@ def analy_chess(chess_book, i, j, blackorwhite):
                         add_highlight3 = [
                             [i + c - 4, j + c - 4], [i + c - 3, j + c - 3], [i + c - 2, j + c - 2], [i + c - 1, j + c - 1], [i + c, j + c]]
                         highlight_chess_list.extend(add_highlight3)
-    print(row_win, col_win, oblique_win)
-    print(highlight_chess_list)
+    #print(row_win, col_win, oblique_win)
+    # print(highlight_chess_list)
     return row_win, col_win, oblique_win, highlight_chess_list
 
 
@@ -64,5 +64,3 @@ def isWin(row_win, col_win, oblique_win):
         return True
     else:
         return False
-
-

@@ -9,6 +9,17 @@ pygame.init()
 draw_board_base()
 # 默认黑棋先走 0黑 1白
 blackorwhite = 0
+screen_type = 'game_ing'
+# pygame.font.init()
+font_list = pygame.font.get_fonts()
+my_font = pygame.font.Font('./font/msyh.ttf', 32)
+
+
+def doInScreen(screen_type):
+    if screen_type == 'game_ing':
+        pass
+    if screen_type == 'game_end':
+        pass
 
 
 while 1:
@@ -21,18 +32,19 @@ while 1:
             exit(0)
         if event.type == pygame.MOUSEBUTTONDOWN:
             posX, posY = pygame.mouse.get_pos()
-            i, j = getij_fromposXY(posX, posY)
-            if isCanPutdown(i, j):
-                draw_chessman(blackorwhite, i, j)
-                row_win, col_win, oblique_win, highlight_chess_list = analy_chess(
-                    chess_book, i, j, blackorwhite)
-                if isWin(row_win, col_win, oblique_win):
-                    draw_hightlight_chess(highlight_chess_list)
-                    if blackorwhite == 0:
-                        print('黑棋获胜！')
+            if screen_type == 'game_ing':
+                i, j = getij_fromposXY(posX, posY)
+                if isCanPutdown(i, j):
+                    draw_chessman(blackorwhite, i, j)
+                    row_win, col_win, oblique_win, highlight_chess_list = analy_chess(
+                        chess_book, i, j, blackorwhite)
+                    if isWin(row_win, col_win, oblique_win):
+                        draw_hightlight_chess(highlight_chess_list)
+                        screen_type = 'game_end'
+                        win_words(my_font, blackorwhite)
                     else:
-                        print('白棋获胜！')
+                        blackorwhite = changehand(blackorwhite)
                 else:
-                    blackorwhite = changehand(blackorwhite)
-            else:
+                    pass
+            if screen_type == 'game_end':
                 pass

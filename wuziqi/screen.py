@@ -2,6 +2,7 @@
 import pygame
 from pygame.locals import *
 import os
+import time
 
 # 设置显示窗口
 width, height = 900, 900
@@ -23,6 +24,7 @@ chess_book = [[None for col in range(0, 15)]for row in range(0, 15)]
 # btn_1_rect = pygame.Rect(228, 100, btn_1.get_width(), btn_1.get_height())
 # btn_2_rect = pygame.Rect(228, 300, btn_1.get_width(), btn_1.get_height())
 # btn_3_rect = pygame.Rect(228, 500, btn_1.get_width(), btn_1.get_height())
+# 字体
 
 
 def draw_board_base():
@@ -63,6 +65,26 @@ def changehand(blackorwhite):
 
 
 def draw_hightlight_chess(highlight_chess_list):
+    '''高亮致胜棋子'''
     for grid in highlight_chess_list:
         screen.blit(
             highlight_circle, [grid[0] * 50 + 75 + 4.5, grid[1] * 50 + 75 + 4.5])
+        pygame.display.update()
+        screen.blit(
+            highlight_circle, [grid[0] * 50 + 75 + 4.5, grid[1] * 50 + 75 + 4.5])
+        pygame.display.update()
+        screen.blit(
+            highlight_circle, [grid[0] * 50 + 75 + 4.5, grid[1] * 50 + 75 + 4.5])
+        pygame.display.update()
+
+
+def win_words(my_font, blackorwhite):
+    '''文字：宣布胜利方'''
+    if blackorwhite == 0:
+        font_win_surface_0 = my_font.render(
+            r'黑棋获胜!', True, (0, 0, 0), (255, 255, 255))
+        screen.blit(font_win_surface_0, (400, 450))
+    else:
+        font_win_surface_1 = my_font.render(
+            r'白棋获胜!', True, (0, 0, 0), (255, 255, 255))
+        screen.blit(font_win_surface_1, (400, 450))
