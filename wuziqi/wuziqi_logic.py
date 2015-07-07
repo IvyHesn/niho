@@ -19,15 +19,17 @@ def isWin(chess_book, i, j, blackorwhite):
     row_win = [None] * 5
     col_win = [None] * 5
     oblique_win = [None] * 5
-    row_win_cmp = [None] * 5
-    col_win_cmp = [None] * 5
-    oblique_win_cmp = [None] * 5
+
     for c in range(0, 5):
+        row_win_cmp = [None] * 5
         if 0 <= i + c - 4 and i + c - 0 < 15:
             for c2 in range(0, 5):
                 if chess_book[i + c - 4][j] == chess_book[i + c - 4 + c2][j] == blackorwhite:
-                    row_win[c] = 1
+                    row_win_cmp[c2] = 1
+                    if row_win_cmp == [1, 1, 1, 1, 1]:
+                        row_win[c] = 1
     for c in range(0, 5):
+        col_win_cmp = [None] * 5
         if 0 <= j + c - 4 and j + c - 0 < 15:
             for c2 in range(0, 5):
                 if chess_book[i][j + c - 4] == chess_book[i][j + c - 4 + c2] == blackorwhite:
@@ -35,6 +37,7 @@ def isWin(chess_book, i, j, blackorwhite):
                     if col_win_cmp == [1, 1, 1, 1, 1]:
                         col_win[c] = 1
     for c in range(0, 5):
+        oblique_win_cmp = [None] * 5
         if 0 <= i + c - 4 and 0 <= j + c - 4 and i + c - 0 < 15 and j + c - 0 < 15:
             for c2 in range(0, 5):
                 if chess_book[i + c - 4][j + c - 4] == chess_book[i + c - 4 + c2][j + c - 4 + c2] == blackorwhite:
@@ -47,3 +50,8 @@ def isWin(chess_book, i, j, blackorwhite):
         return True
     else:
         return False
+
+
+def highlight_chess():
+    pass
+    return a

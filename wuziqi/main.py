@@ -25,6 +25,7 @@ while 1:
             if isCanPutdown(i, j):
                 draw_chessman(blackorwhite, i, j)
                 if isWin(chess_book, i, j, blackorwhite):
+                    highlight_chess()
                     if blackorwhite == 0:
                         print('黑棋获胜！')
                     else:
