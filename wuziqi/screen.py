@@ -19,13 +19,17 @@ board_base_2 = pygame.image.load('res/board_base_2.png')
 highlight_circle = pygame.image.load('res/highlight_circle.png')
 chessman_black = pygame.image.load('res/chessman_black.png')
 chessman_white = pygame.image.load('res/chessman_white.png')
-chess_book = [[None for col in range(0, 15)]for row in range(0, 15)]
 # 生成每个图片的位置
 # btn_1_rect = pygame.Rect(228, 100, btn_1.get_width(), btn_1.get_height())
 # btn_2_rect = pygame.Rect(228, 300, btn_1.get_width(), btn_1.get_height())
 # btn_3_rect = pygame.Rect(228, 500, btn_1.get_width(), btn_1.get_height())
 # 字体
 
+
+def init_screen():
+    chess_book = [[None for col in range(0, 15)]for row in range(0, 15)]
+    return chess_book
+chess_book = init_screen()
 
 def draw_board_base():
     '''绘制棋盘底'''
@@ -56,6 +60,8 @@ def draw_chessman(blackorwhite, i, j):
     # print(i, j)
     chess_book[i][j] = blackorwhite
     # print(chess_book)
+
+
 
 
 def changehand(blackorwhite):

@@ -30,9 +30,9 @@ while 1:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit(0)
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            posX, posY = pygame.mouse.get_pos()
-            if screen_type == 'game_ing':
+        if screen_type == 'game_ing':
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                posX, posY = pygame.mouse.get_pos()
                 i, j = getij_fromposXY(posX, posY)
                 if isCanPutdown(i, j):
                     draw_chessman(blackorwhite, i, j)
@@ -40,11 +40,18 @@ while 1:
                         chess_book, i, j, blackorwhite)
                     if isWin(row_win, col_win, oblique_win):
                         draw_hightlight_chess(highlight_chess_list)
-                        screen_type = 'game_end'
+                        chess_book = init_screen()
                         win_words(my_font, blackorwhite)
+                        screen_type = 'game_end'
                     else:
                         blackorwhite = changehand(blackorwhite)
                 else:
                     pass
-            if screen_type == 'game_end':
-                pass
+        if screen_type == 'game_end':
+            print(pygame.event.get())
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                posX, posY = pygame.mouse.get_pos()
+                if posX > 0:
+                    #draw_board_base()
+                    screen_type = 'game_ing'
+                    pygame.display.update()
